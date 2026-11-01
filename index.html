@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en" style="--orange: #ff8800;"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spin Squad — Wellington's Premier Table Tennis Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700;800&amp;family=Oswald:wght@500;700&amp;family=Playfair+Display:wght@500;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#050608;--char:#0c1015;--paper:#f4f2ec;--orange:rgb(48,121,166);--muted:#a9afb8;--line:rgba(255,255,255,.17)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--ink);color:#fff;font-family:Inter,Arial,sans-serif} a{color:inherit;text-decoration:none}
+    .editor{position:fixed;z-index:50;right:18px;bottom:18px;background:#fff;color:#101114;border-radius:14px;padding:10px;box-shadow:0 12px 35px #0008;display:flex;gap:8px;align-items:center}.editor button{border:0;background:#15191f;color:#fff;padding:9px 12px;border-radius:8px;font-weight:700;cursor:pointer}.editor .orange{background:var(--orange)}.editor-panel{position:fixed;z-index:49;right:18px;bottom:74px;width:280px;background:#fff;color:#101114;padding:16px;border-radius:14px;box-shadow:0 12px 35px #0008;display:none}.editor-panel.open{display:block}.editor-panel h4{margin:0 0 5px;font-size:14px}.editor-panel p{font-size:11px;line-height:1.4;color:#656a73;margin:0 0 12px}.editor-panel label{font-size:10px;font-weight:800;letter-spacing:.7px;display:block;margin:10px 0 4px}.editor-panel select,.editor-panel input{width:100%;border:1px solid #d8dbe0;border-radius:6px;padding:7px;background:white;font:12px Inter}.editor-panel input[type=range]{padding:0}.style-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.editor-panel .style-actions{display:flex;gap:6px;margin-top:12px}.editor-panel .style-actions button{font-size:11px;flex:1}.gallery .media-frame{overflow:hidden;position:relative;min-width:0;min-height:0}.gallery .media-frame:first-child{grid-row:span 2}.gallery .media-frame img,.gallery .media-frame video{width:100%;height:100%;object-fit:cover;background:#000;display:block}body.editing [data-edit]{outline:2px dashed var(--orange);outline-offset:5px;cursor:text}body.editing [data-edit].selected{outline:3px solid #fff;box-shadow:0 0 0 6px var(--orange)}body.editing section.selected,body.editing article.selected,body.editing img.selected,body.editing video.selected,body.editing .form.selected,body.editing .program.selected{outline:3px solid var(--orange);outline-offset:-3px} body.editing [data-edit]:focus{background:#fff2e9;color:#111}
+    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:25px;padding:0 max(4vw,28px);position:absolute;z-index:3;width:100%;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:9px;font-family:'Bebas Neue';font-size:25px;letter-spacing:1px;line-height:.75}.brand b{display:block;color:var(--orange)}.ball{width:48px;height:48px;border:3px solid #eee;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fff 0 12%,#101116 14% 33%,#e6371f 35% 52%,#111 54%);box-shadow:inset 0 0 0 3px #c9251b}.links{display:flex;gap:26px;align-items:center;font-size:13px;font-weight:700}.links a:hover{color:var(--orange)}.join,.button{background:var(--orange);display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:3px;padding:14px 27px;transition:.2s}.join{padding:11px 22px}.button.outline{background:transparent;border:2px solid white}.button:hover{transform:translateY(-2px);filter:brightness(1.1)}
+    .hero{min-height:800px;padding:190px 7% 55px;display:flex;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(1,8,17,var(--ov,.94)),rgba(0,0,0,calc(var(--ov,.94)*.64))),var(--bg-img) center/cover}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(130deg,transparent 35%,rgba(48,121,166,.12));pointer-events:none}.hero-inner{position:relative;z-index:1;max-width:930px;margin:auto}.eyebrow{color:var(--orange);font-weight:800;letter-spacing:2.2px;font-size:13px}.hero h1,.title{font-family:'Bebas Neue';letter-spacing:1px;margin:16px 0;font-size:clamp(56px,8vw,116px);line-height:.9}.hero p{font-size:18px;line-height:1.55;max-width:660px;margin:0 auto 35px;color:#e4e6e9}.actions{display:flex;gap:15px;justify-content:center}.stats{border-top:1px solid var(--line);margin-top:65px;padding-top:35px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat b{display:block;color:var(--orange);font:42px 'Bebas Neue';letter-spacing:1px}.stat span{font-size:11px;letter-spacing:1.3px;color:#c7c9cc}
+    .ticker{background:var(--orange);color:#101010;padding:15px 0;overflow:hidden;white-space:nowrap;font:25px 'Bebas Neue';letter-spacing:1.5px}.ticker div{animation:run 20s linear infinite}@keyframes run{to{transform:translateX(-28%)}}
+    section{padding:105px max(5vw,28px)}.dark{background:var(--char)}.light{background:var(--paper);color:#101114}.heading{text-align:center;max-width:650px;margin:0 auto 48px}.heading .title{font-size:58px;margin:8px 0}.heading p{line-height:1.6;color:inherit;opacity:.7}.grid{max-width:1200px;margin:auto;display:grid;gap:24px}.squad{grid-template-columns:repeat(3,1fr)}.person{overflow:hidden;background:#171b21}.person img{height:330px;width:100%;object-fit:cover;filter:grayscale(.2)}.person div{padding:20px 23px 25px}.person h3,.card h3{font:32px 'Bebas Neue';letter-spacing:.6px;margin:0 0 5px}.person p,.card p{margin:0;color:var(--muted);font-size:13px}.sessions{grid-template-columns:repeat(4,1fr)}.session{border-top:3px solid var(--orange);padding:22px;background:#15191f}.date{font:38px 'Bebas Neue';color:var(--orange)}.session h3{margin:20px 0 8px;font-size:17px}.session small{color:var(--muted)}.membership{grid-template-columns:repeat(3,1fr);align-items:stretch}.card{padding:35px 30px;border:1px solid #d8d4cc;background:#fff;position:relative}.card.featured{background:#11151a;color:#fff;border-color:var(--orange);transform:translateY(-15px)}.tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--orange);color:#111;padding:6px 13px;font-size:10px;font-weight:800;letter-spacing:1px}.price{font:50px 'Bebas Neue';margin:24px 0}.card li{list-style:none;padding:9px 0;border-top:1px solid #ddd;font-size:13px}.featured li{border-color:#30353b}.card ul{padding:0;margin:0 0 28px}.card .button{font-size:13px;width:100%;padding:13px;color:#fff}
+    .coach{padding:0;min-height:620px;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(90deg,#111a22 48%,transparent 48%),var(--bg-img) right center/cover}.coach-copy{padding:90px max(5vw,28px);max-width:660px}.coach-copy .title{font-size:64px}.coach-copy p{color:#d6d8dc;line-height:1.65}.programs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.program{padding:16px;border-top:2px solid var(--orange);background:#0004}.program b{font-size:12px}.program span{font-size:11px;color:#bbb;display:block;margin-top:6px}
+.programs{grid-template-columns:repeat(3,minmax(0,1fr))}.program{min-width:0;overflow:hidden}.program video{display:block;max-width:100%;height:auto}
+    .gallery{grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px}.gallery img{width:100%;height:100%;object-fit:cover;filter:saturate(.75)}.gallery img:first-child{grid-row:span 2}.news{grid-template-columns:repeat(3,1fr)}.news .card{min-height:250px}.news .date{font-size:14px;font-family:Inter;font-weight:800;color:var(--orange);text-transform:uppercase}.contact{display:grid;max-width:1200px;margin:auto;grid-template-columns:1fr 1fr;gap:80px}.details h2{font:52px 'Bebas Neue';margin:0 0 15px}.details p{color:#b8bdc4;line-height:1.7}.info{margin-top:30px;border-top:1px solid var(--line)}.info div{padding:16px 0;border-bottom:1px solid var(--line);font-size:14px}.info b{display:block;color:var(--orange);font-size:11px;letter-spacing:1px;margin-bottom:4px}.form{background:#15191f;padding:34px}.form label{font-size:10px;letter-spacing:1.4px;display:block;margin:15px 0 7px;color:#c7c9cc}.form input,.form textarea,.form select{width:100%;background:#0a0c0f;border:1px solid #353a42;padding:12px;color:#fff;font:13px Inter}.form textarea{height:100px;resize:vertical}.form button{margin-top:20px;border:0;width:100%;font:700 14px Inter;cursor:pointer}.footer{background:#020305;padding:65px max(5vw,28px) 25px}.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px}.footer p,.footer li{color:#9da2aa;font-size:13px;line-height:1.7}.footer ul{padding:0;list-style:none}.footer li{padding:3px 0}.copyright{border-top:1px solid var(--line);margin-top:35px;padding-top:22px;color:#80858c;font-size:11px;text-align:center}
+    @media(max-width:900px){.nav{position:relative;background:#06080b;height:auto;padding:16px 22px}.links{display:none}.hero{min-height:680px;padding-top:130px}.squad,.membership,.news,.sessions{grid-template-columns:repeat(2,1fr)}.coach{grid-template-columns:1fr;background-position:75%}.coach-copy{background:#111a22e8}.contact{grid-template-columns:1fr;gap:35px}.footer-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-rows:170px 170px}}
+    @media(max-width:560px){section{padding:70px 21px}.hero{padding:115px 20px 40px}.hero p{font-size:16px}.actions{flex-direction:column;align-items:center}.stats{grid-template-columns:repeat(2,1fr);gap:24px}.squad,.membership,.news,.sessions{grid-template-columns:1fr}.card.featured{transform:none}.gallery{grid-template-columns:1fr 1fr;grid-template-rows:160px 160px}.gallery img:first-child{grid-row:span 2}.programs{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.editor{left:12px;right:12px;bottom:12px;justify-content:center}.editor button{font-size:12px;padding:9px}}
+    #site{position:relative}
+    [data-cols]{grid-template-columns:repeat(var(--c),minmax(0,1fr))}
+    [data-cols="1"]{--c:1}[data-cols="2"]{--c:2}[data-cols="3"]{--c:3}[data-cols="4"]{--c:4}[data-cols="5"]{--c:5}[data-cols="6"]{--c:6}
+    body:not(.ed-on) #site .ed-off{display:none!important}body.ed-on #site .ed-off{opacity:.3}
+    .burger{display:none;background:none;border:2px solid #fff;color:#fff;border-radius:4px;padding:8px 12px;font:700 13px Inter,Arial;cursor:pointer}
+    @media(max-width:900px){[data-cols="3"],[data-cols="4"],[data-cols="5"],[data-cols="6"]{--c:2}.burger{display:block}.links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:#06080b;padding:18px 22px;gap:16px;z-index:5}}
+    @media(max-width:560px){[data-cols]{--c:1}}
+    .nav{position:sticky;top:0;width:auto;margin-bottom:-86px;background:rgba(5,6,8,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+    html{scroll-padding-top:86px}
+    @media(max-width:900px){.nav{position:sticky;margin-bottom:0;background:#06080b}}
+    /* Map embed */
+    .map-embed{margin-top:28px;border-radius:12px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+    .map-embed iframe{width:100%;height:100%;border:0}
+    .logo{height:80px;width:auto;display:block}
+    /* Brand text */
+    .brand{line-height:1}
+    .brand-text{color:#ff8800}          /* colour of "SPIN" */
+    .brand-text b{display:inline;color:#ffffff}   /* colour of "SQUAD" */
+  </style>
+</head>
+<body>
+  <div id="site"><style id="user-css">.coach{grid-template-columns:minmax(0,1fr);background-image:none}
+.coach-copy{margin:0 auto;max-width:760px;width:100%;box-sizing:border-box;text-align:center;background:transparent}
+.coach-copy p{max-width:620px;margin-left:auto;margin-right:auto}
+.programs{display:block;width:100%;max-width:700px;margin:30px auto 0}
+.program{box-sizing:border-box}
+.program video{width:100%;display:block;margin:14px auto 0}
+@media(max-width:600px){.logo{height:52px}.nav{gap:10px;padding:12px 16px}.brand{font-size:22px;min-width:0}.join{padding:10px 14px}.heading .title,.coach-copy .title{font-size:min(58px,12vw)}}
+.links.open{background:rgba(6,8,11,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.person img{transition:transform .6s ease}
+.person:hover img{transform:scale(1.08)}
+.coaches{display:flex;justify-content:center;gap:24px;max-width:700px;margin:30px auto 0}
+.coaches .person{flex:1 1 0;min-width:0;max-width:320px;text-align:center}
+.coaches .person img{height:260px}
+@media(max-width:600px){.coaches{gap:12px}.coaches .person img{height:180px}.coaches .person h3{font-size:26px}.coaches .person div{padding:16px 10px 20px}}
+
+#membership .card.featured{transform:none;border-color:#d8d4cc}
+
+#membership .card.featured{background:#000}
+#membership .featured li{border-color:#ddd}
+/* Events calendar */
+.cal{max-width:760px;margin:56px auto 0;background:#fff;border:1px solid #d8d4cc;padding:28px;color:#111;box-sizing:border-box}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.cal-title{font:36px 'Bebas Neue';letter-spacing:.6px;margin:0;flex:1;text-align:center}
+.cal-nav{width:42px;height:42px;border:1px solid #d8d4cc;background:#fff;color:#111;font-size:22px;line-height:1;cursor:pointer}
+.cal-nav:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-dow{font:800 11px Inter;letter-spacing:1px;color:#777;text-align:center;padding:6px 0}
+.cal-day{aspect-ratio:1.5/1;min-height:38px;border:0;padding:0;background:#f4f2ec;font:600 14px Inter;color:#111;position:relative}
+.cal-day.today{outline:2px solid #111;outline-offset:-2px}
+.cal-day.has{background:var(--orange);color:#fff;font-weight:800;cursor:pointer}
+.cal-day.has:hover{filter:brightness(1.12)}
+.cal-day.sel{box-shadow:inset 0 0 0 3px #111}
+.cal-day.has:after{content:attr(data-n);position:absolute;top:3px;right:5px;font-size:10px;opacity:.85}
+.cal-detail{margin-top:20px;border-top:1px solid #d8d4cc;padding-top:14px}
+.cal-note{font-size:13px;color:#777;margin:0 0 6px}
+.cal-ev{padding:12px 0;border-bottom:1px solid #eee}
+.cal-ev:last-child{border-bottom:0}
+.cal-ev .when{font:800 12px Inter;color:var(--orange);text-transform:uppercase;letter-spacing:.4px}
+.cal-ev h4{margin:4px 0;font:26px 'Bebas Neue';letter-spacing:.5px}
+.cal-ev p{margin:0;font-size:14px;line-height:1.55;color:#555}
+@media(max-width:560px){.cal{padding:16px}.cal-title{font-size:28px}.cal-day{min-height:34px;font-size:13px}}
+</style><header class="nav"><a class="brand" href="#home"><img class="logo" src="images/spinSquad_logo_transparent.png" alt="Club logo"><span class="brand-text">SPIN<b>SQUAD</b></span></a><nav class="links"><a href="#home">Home</a><a href="#squad">Our Squad<br></a><a href="#sessions">Sessions</a><a href="#membership">Membership</a><a href="#coaching">Coaching</a><a href="#gallery">Gallery</a><a href="#news">News &amp; Events</a><a href="#contact">Contact</a></nav><a class="join" href="#membership">Join Now</a><button class="burger" aria-label="Menu">Menu</button></header>
+  <main>
+    <section class="hero" id="home" data-bgvar="" data-ov="" style="--bg-img:url('https://images.unsplash.com/photo-1611251135345-18a3b54c1a45?auto=format&amp;fit=crop&amp;w=2200&amp;q=85')"><div class="hero-inner"><div class="eyebrow">WELLINGTON'S PREMIER TABLE TENNIS CLUB</div><h1><span style="color:var(--orange)">SPIN</span>SQUAD</h1><p>Join SpinSquad Table Tennis— where juniors, adults, and seniors come together to take their sport to the next level.</p><div class="actions"><a href="#membership" class="button">Join Now</a><a href="#sessions" class="button outline">View Sessions</a></div><div class="stats"><div class="stat"><b>50+</b><span>MEMBERS</span></div><div class="stat"><b>4+</b><span>YEARS ACTIVE</span></div><div class="stat"><b>2</b><span>SESSIONS / WEEK</span></div><div class="stat"><b>All</b><span>SKILL LEVELS</span></div></div></div></section>
+    <div class="ticker"><div>Spin Squad &nbsp; • &nbsp; WELLINGTON &nbsp; • &nbsp; PLAY. IMPROVE. BELONG. &nbsp; • &nbsp; SPIN SQUAD &nbsp; • &nbsp; WELLINGTON &nbsp; • &nbsp; PLAY. IMPROVE. BELONG. &nbsp; • &nbsp;</div></div>
+    <section class="dark" id="squad"><div class="heading"><div class="eyebrow">THE PEOPLE</div><h2 class="title">OUR SQUAD</h2><p>Meet the players who make Spin Squad what it is.</p></div><div class="grid squad" data-cols="3"><article class="person" style="transition: opacity 0.45s; opacity: 1;"><img src="https://picsum.photos/seed/spinsquad3/800/700" alt="Squad Member 6"><div><h3>Squad Member 6</h3><p>Role · Level</p></div></article><article class="person" style="transition: opacity 0.45s; opacity: 1;"><img src="https://picsum.photos/seed/spinsquad2/800/700" alt="Squad Member 5"><div><h3>Squad Member 5</h3><p>Role · Level</p></div></article><article class="person" style="transition: opacity 0.45s; opacity: 1;"><img src="https://picsum.photos/seed/spinsquad7/800/700" alt="Squad Member 10"><div><h3>Squad Member 10</h3><p>Role · Level</p></div></article></div></section>
+    <section class="light" id="sessions"><div class="heading"><div class="eyebrow">COME AND PLAY</div><h2 class="title">SESSIONS</h2><p>Regular sessions for every level.<br>Our sessions are 2 hours each. We practise drills, we provide individual coaching, and we sometimes finish by a doubles game.</p></div><div class="grid sessions" data-cols="2" style="opacity: 1;"><article class="session"><div class="date">WEDNESDAY</div><h3 style="color: rgb(255, 255, 255);">Location:</h3><small><a href="https://maps.app.goo.gl/faTgD7UX1U9cfoFW7" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Newtown Titan Stadium,<br>160 Alexandra Road, Newtown, Wellington 6023</a><br></small><p style="color: rgb(255, 136, 0);">6:30 PM – 8:30 PM</p></article><article class="session"><div class="date">SATURDAY</div><h3 style="color: rgb(255, 255, 255);">Location:<br></h3><small><a href="https://maps.app.goo.gl/faTgD7UX1U9cfoFW7" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Newtown Titan Stadium,<br>160 Alexandra Road, Newtown, Wellington 6023</a><br></small><p style="color: rgb(255, 136, 0);">9:00 AM – 12:00 PM</p></article></div></section>
+    <section class="dark" id="membership"><div class="heading"><div class="eyebrow">BECOME A MEMBER</div><h2 class="title">MEMBERSHIP</h2><p>Pick the plan that suits you and start playing.</p></div><div class="grid membership" data-cols="3"><article class="card" style="background-color: rgb(0, 0, 0);"><span class="tag">Age Group 1</span><h3>Junior / STUDENT</h3><p>For players under 18 or Students</p><div class="price">$3 <small>per SESSION</small></div><ul></ul><a class="button" href="#contact">Get Started</a></article><article class="card featured"><span class="tag">Age Group 2</span><h3>Adult</h3><p>For players 18 and over (Non-Students)<br></p><div class="price">$5 <small>per SESSION</small></div><ul></ul><a class="button" href="#contact">Get Started</a></article><article class="card" style="background-color: rgb(0, 0, 0);"><span class="tag">Age Group 3</span><h3>Senior / PENSIONER</h3><p>For players 65+</p><div class="price">$4 <small>per SESSION</small></div><ul></ul><a class="button" href="#contact">Get Started</a></article></div></section>
+    <section class="coach" id="coaching" data-bgvar="" style="--bg-img: none; min-height: 620px; background-color: rgb(0, 0, 0);"><div class="coach-copy"><div class="eyebrow">UP YOUR GAME</div><h2 class="title">COACHING</h2><p>Level up your game with expert coaching. Martin DaCosta and Keith Aldersley have years of experience playing at top level and provide individual coaching to all members of the squad.</p><div class="coaches"><article class="person"><img src="https://picsum.photos/seed/spinsquadcoach1/800/700" alt="Martin DaCosta"><div><h3>Martin DaCosta</h3><p>Coach</p></div></article><article class="person"><img src="https://picsum.photos/seed/spinsquadcoach2/800/700" alt="Keith Aldersley"><div><h3>Keith Aldersley</h3><p>Coach</p></div></article></div><div class="programs" style="border-radius: 0px; opacity: 1; gap: 1px; padding: 0px;"><div class="program" style="opacity: 1; padding: 0px;"><b style="font-size: 16px;"><br>VIDEO RECORDINGS</b><span style="font-size: 16px;">Each coaching session is recorded with 2 cameras, players can then view and analyse the recordings on their own time.<br><br></span><video controls="" muted="" loop="" src="videos/session.mp4" style="max-height: 260px; object-fit: contain;"></video></div></div><br><a href="#contact" class="button">Enquire About Coaching</a></div></section>
+    <section class="dark" id="gallery"><div class="heading"><div class="eyebrow">ON AND OFF THE TABLE</div><h2 class="title">GALLERY</h2><p>Life at SpinSquad Table Tennis.</p></div><div class="grid gallery"><div class="media-frame"><img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Table tennis match"></div><div class="media-frame"><img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Player serving"></div><div class="media-frame"><img src="https://images.unsplash.com/photo-1611251135345-18a3b54c1a45?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Paddle and ball"></div><div class="media-frame"><img src="https://images.unsplash.com/photo-1593341646521-90a68c7501f0?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Club game"></div><div class="media-frame"><img src="https://images.unsplash.com/photo-1576075858501-174a8ed1c7af?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Table tennis club"></div></div></section>
+    <section class="light" id="news"><div class="heading"><div class="eyebrow">FROM THE CLUB</div><h2 class="title">NEWS &amp; EVENTS</h2><p>Stay up to date with what's happening at the club.</p></div><div class="grid news" data-cols="3"><article class="card"><div class="date">Tournament · Nov 4, 2026</div><h3>Wellington Regional Championships</h3><p>Our members will be competing at the Wellington Regional Championships. Come along and cheer them on!</p></article><article class="card"><div class="date">Club tournament · Dec 5 and 12, 2026</div><h3>Internal SpinSquad Championship</h3><p>Enrolments are now open. 2 weeks format tournament.</p></article><article class="card"><div class="date">Club end of season · Dec 12, 2026</div><h3>End of Season BBQ</h3><p>Join us for our annual end-of-season social session - prizes, games, food and great company.</p></article></div><div class="cal" id="club-cal"><div class="cal-head"><button type="button" class="cal-nav" data-nav="-1" aria-label="Previous month">‹</button><h3 class="cal-title">November 2026</h3><button type="button" class="cal-nav" data-nav="1" aria-label="Next month">›</button></div><div class="cal-grid"><div class="cal-dow">Mon</div><div class="cal-dow">Tue</div><div class="cal-dow">Wed</div><div class="cal-dow">Thu</div><div class="cal-dow">Fri</div><div class="cal-dow">Sat</div><div class="cal-dow">Sun</div><div></div><div></div><div></div><div></div><div></div><div></div><button class="cal-day today" type="button" disabled="" style="cursor: default;">1</button><button class="cal-day" type="button" disabled="" style="cursor: default;">2</button><button class="cal-day" type="button" disabled="" style="cursor: default;">3</button><button class="cal-day has" type="button" data-k="2026-11-04" aria-label="4 November: Wellington Regional Championships">4</button><button class="cal-day" type="button" disabled="" style="cursor: default;">5</button><button class="cal-day" type="button" disabled="" style="cursor: default;">6</button><button class="cal-day" type="button" disabled="" style="cursor: default;">7</button><button class="cal-day" type="button" disabled="" style="cursor: default;">8</button><button class="cal-day" type="button" disabled="" style="cursor: default;">9</button><button class="cal-day" type="button" disabled="" style="cursor: default;">10</button><button class="cal-day" type="button" disabled="" style="cursor: default;">11</button><button class="cal-day" type="button" disabled="" style="cursor: default;">12</button><button class="cal-day" type="button" disabled="" style="cursor: default;">13</button><button class="cal-day" type="button" disabled="" style="cursor: default;">14</button><button class="cal-day" type="button" disabled="" style="cursor: default;">15</button><button class="cal-day" type="button" disabled="" style="cursor: default;">16</button><button class="cal-day" type="button" disabled="" style="cursor: default;">17</button><button class="cal-day" type="button" disabled="" style="cursor: default;">18</button><button class="cal-day" type="button" disabled="" style="cursor: default;">19</button><button class="cal-day" type="button" disabled="" style="cursor: default;">20</button><button class="cal-day" type="button" disabled="" style="cursor: default;">21</button><button class="cal-day" type="button" disabled="" style="cursor: default;">22</button><button class="cal-day" type="button" disabled="" style="cursor: default;">23</button><button class="cal-day" type="button" disabled="" style="cursor: default;">24</button><button class="cal-day" type="button" disabled="" style="cursor: default;">25</button><button class="cal-day" type="button" disabled="" style="cursor: default;">26</button><button class="cal-day" type="button" disabled="" style="cursor: default;">27</button><button class="cal-day" type="button" disabled="" style="cursor: default;">28</button><button class="cal-day" type="button" disabled="" style="cursor: default;">29</button><button class="cal-day" type="button" disabled="" style="cursor: default;">30</button></div><div class="cal-detail"><p class="cal-note">Events in November (click a highlighted date for details):</p><div class="cal-ev"><div class="when">Tournament · Nov 4, 2026</div><h4>Wellington Regional Championships</h4><p>Our members will be competing at the Wellington Regional Championships. Come along and cheer them on!</p></div></div></div><script type="application/json" id="club-events-data">[{"tag": "Tournament", "title": "Wellington Regional Championships", "details": "Our members will be competing at the Wellington Regional Championships. Come along and cheer them on!", "dates": ["2026-11-04"]}, {"tag": "Club tournament", "title": "Internal SpinSquad Championship", "details": "Enrolments are now open. 2 weeks format tournament.", "dates": ["2026-12-05", "2026-12-12"]}, {"tag": "Club end of season", "title": "End of Season BBQ", "details": "Join us for our annual end-of-season social session - prizes, games, food and great company.", "dates": ["2026-12-12"]}]</script></section>
+    <section class="dark" id="contact"><div class="contact"><div class="details"><div class="eyebrow">LET'S TALK TABLE TENNIS</div><h2>GET IN TOUCH</h2><p>Questions about membership, sessions, or coaching? We'd love to hear from you.</p><div class="info"><div><b>LOCATION</b><span>Newtown Titan Stadium,<br>160 Alexandra Road, Newtown, Wellington 6023<br>Wellington, New Zealand</span></div><div><b>EMAIL</b><a href="mailto:elkabyle@hotmail.com">info@spinsquad.co.nz</a></div><div><b>PHONE</b><span>+64 4 000 0000</span></div><div><b>SESSION TIMES</b>Monday or Wednesday, Saturday.</div></div>
+
+
+<div class="map-embed"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5181.476555481239!2d174.78403539493422!3d-41.31001861834028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38afe4842e55f5%3A0xe62aaae2eb0a6de1!2sWellington%20Table%20Tennis%20Stadium!5e1!3m2!1sen!2snz!4v1793406167478!5m2!1sen!2snz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+
+    </div><form class="form" action="https://api.web3forms.com/submit" method="POST"><input type="hidden" name="access_key" value="e040ab95-1277-4bd9-96ed-3d2da4cd7079"><input type="checkbox" name="botcheck" style="display:none"><label>NAME</label><input name="name" required="" placeholder="Your name"><label>EMAIL</label><input name="email" required="" type="email" placeholder="you@example.com"><label>PHONE (OPTIONAL)</label><input name="phone" placeholder="Your phone number"><label>SUBJECT</label><select name="subject"><option>Membership</option><option>Sessions</option><option>Coaching</option><option>General Enquiry</option></select><label>MESSAGE</label><textarea name="message" required="" placeholder="How can we help?"></textarea><button class="button" type="submit">Send Message</button></form></div></section>
+  </main>
+  <footer class="footer"><div class="footer-grid"><div><a class="brand" href="#home"><img class="logo" src="images/spinSquad_logo_transparent.png" alt="Club logo"><span class="brand-text">SPIN<b>SQUAD</b></span></a><p>Wellington's premier table tennis club. Competing, training, and connecting players of all ages and skill levels since day one.</p></div><div><h3>QUICK LINKS</h3><ul><li><a href="#squad">Our Squad<br></a></li><li><a href="#sessions">Sessions</a></li><li><a href="#membership">Membership</a></li><li><a href="#coaching">Coaching</a></li></ul></div><div><h3>FIND US</h3><p>📍 <a href="https://maps.app.goo.gl/faTgD7UX1U9cfoFW7" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Wellington, New Zealand</a><br>📧 <a href="mailto:elkabyle@hotmail.com" style="color:inherit;text-decoration:underline">info@spinsquad.co.nz</a><br>🏓 Sessions run weekly — all welcome</p></div></div><div class="copyright">© 2026 SpinSquad Table Tennis. All rights reserved. Wellington, New Zealand</div></footer>
+</div>
+  <script id="site-js">document.addEventListener('click',function(e){var l=document.querySelector('.links');if(!l)return;if(e.target.closest('.burger'))l.classList.toggle('open');else if(e.target.closest('.links a'))l.classList.remove('open')})</script>
+  <script id="squad-shuffle">
+  (function(){
+    /* Squad members: photo + name + description travel together. Add, remove or edit lines freely (at least 4). */
+    var MEMBERS=[
+      {img:"https://picsum.photos/seed/spinsquad10/800/700",name:"Squad Member 1",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad11/800/700",name:"Squad Member 2",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad12/800/700",name:"Squad Member 3",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad1/800/700",name:"Squad Member 4",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad2/800/700",name:"Squad Member 5",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad3/800/700",name:"Squad Member 6",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad4/800/700",name:"Squad Member 7",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad5/800/700",name:"Squad Member 8",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad6/800/700",name:"Squad Member 9",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad7/800/700",name:"Squad Member 10",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad8/800/700",name:"Squad Member 11",role:"Role · Level"},
+      {img:"https://picsum.photos/seed/spinsquad9/800/700",name:"Squad Member 12",role:"Role · Level"}
+    ];
+    var ROTATE_MS=15000; /* time between swaps in milliseconds (15000 = 15 seconds); 0 = only on page load */
+    var cards=[].slice.call(document.querySelectorAll('#squad .person'));
+    if(!cards.length)return;
+    var shown=[];
+    function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+    function paint(card,m){
+      var im=card.querySelector('img'),h=card.querySelector('h3'),p=card.querySelector('p');
+      if(im){im.src=m.img;im.alt=m.name}
+      if(h)h.textContent=m.name;
+      if(p)p.textContent=m.role;
+    }
+    function swap(card,i,m,first){
+      if(first){shown[i]=m;paint(card,m);return}
+      var pre=new Image(),done=false;
+      function go(){
+        if(done||card.matches(':hover'))return;done=true;  /* skip if the mouse is on this card */
+        card.style.transition='opacity .45s ease';card.style.opacity='0';
+        setTimeout(function(){shown[i]=m;paint(card,m);card.style.opacity='1'},450);
+      }
+      pre.onload=pre.onerror=go;pre.src=m.img;
+    }
+    function cycle(first){
+      if(!first&&(document.hidden||document.body.classList.contains('ed-on')))return;
+      var avail=shuffle(MEMBERS.filter(function(m){return shown.indexOf(m)<0}));
+      cards.forEach(function(card,i){
+        if(!first&&card.matches(':hover'))return;   /* don't swap the card under the mouse */
+        var m=avail.shift();if(!m)return;
+        setTimeout(function(){swap(card,i,m,first)},first?0:i*700);  /* slight stagger */
+      });
+    }
+    cycle(true);
+    if(ROTATE_MS>0)setInterval(cycle,ROTATE_MS);
+  })();
+  </script>
+  <script id="club-calendar">
+  (function(){
+    /* Events live in the Events tab of the editor (stored in #club-events-data). Cards and calendar are drawn from them. */
+    var MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var DOW=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var now=new Date(),view=new Date(now.getFullYear(),now.getMonth(),1),selKey=null;
+    function pad(n){return n<10?'0'+n:''+n}
+    function key(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+    function parse(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+    function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n}
+    function read(){var s=document.getElementById('club-events-data');try{var a=JSON.parse(s.textContent);return Array.isArray(a)?a:[]}catch(x){return []}}
+    function write(a){var s=document.getElementById('club-events-data');if(!s){s=document.createElement('script');s.type='application/json';s.id='club-events-data';(document.getElementById('news')||document.body).appendChild(s)}s.textContent=JSON.stringify(a).replace(/</g,'\\u003c')}
+    function sorted(a){return a.slice().sort(function(x,y){return (x.dates[0]||'').localeCompare(y.dates[0]||'')})}
+    function label(dates){
+      var g=[];(dates||[]).slice().sort().map(parse).forEach(function(d){var l=g[g.length-1];if(l&&l.y===d.getFullYear()&&l.m===d.getMonth())l.d.push(d.getDate());else g.push({y:d.getFullYear(),m:d.getMonth(),d:[d.getDate()]})});
+      var same=g.every(function(x){return x.y===g[0].y});
+      var parts=g.map(function(x){var n=x.d.length,days=n>2?x.d.slice(0,-1).join(', ')+' and '+x.d[n-1]:x.d.join(' and ');return MS[x.m]+' '+days+(same?'':', '+x.y)});
+      return parts.join(' and ')+(same&&g.length?', '+g[0].y:'');
+    }
+    function top(e){return (e.tag?e.tag+' · ':'')+label(e.dates)}
+    function cards(evs){
+      var g=document.querySelector('#news .grid.news');if(!g)return;g.innerHTML='';
+      evs.forEach(function(e){var a=el('article','card');a.appendChild(el('div','date',top(e)));a.appendChild(el('h3','',e.title));if(e.details)a.appendChild(el('p','',e.details));g.appendChild(a)});
+    }
+    function block(e){var b=el('div','cal-ev');b.appendChild(el('div','when',top(e)));b.appendChild(el('h4','',e.title));if(e.details)b.appendChild(el('p','',e.details));return b}
+    function calendar(evs){
+      var root=document.getElementById('club-cal');if(!root)return;
+      var grid=root.querySelector('.cal-grid'),ttl=root.querySelector('.cal-title'),det=root.querySelector('.cal-detail');
+      var byDay={};evs.forEach(function(e){(e.dates||[]).forEach(function(k){(byDay[k]=byDay[k]||[]).push(e)})});
+      var y=view.getFullYear(),m=view.getMonth(),ym=y+'-'+pad(m+1),todayK=key(now);
+      ttl.textContent=MONTHS[m]+' '+y;grid.innerHTML='';
+      DOW.forEach(function(d){grid.appendChild(el('div','cal-dow',d))});
+      for(var i=0,lead=(new Date(y,m,1).getDay()+6)%7;i<lead;i++)grid.appendChild(el('div'));
+      for(var n=1,days=new Date(y,m+1,0).getDate();n<=days;n++){
+        var k=ym+'-'+pad(n),ev=byDay[k],b=el('button','cal-day',n);b.type='button';
+        if(k===todayK)b.classList.add('today');
+        if(ev){b.classList.add('has');b.dataset.k=k;if(ev.length>1)b.dataset.n=ev.length;b.setAttribute('aria-label',n+' '+MONTHS[m]+': '+ev.map(function(e){return e.title}).join(', '));if(k===selKey)b.classList.add('sel')}
+        else{b.disabled=true;b.style.cursor='default'}
+        grid.appendChild(b);
+      }
+      det.innerHTML='';
+      if(selKey&&byDay[selKey]&&selKey.slice(0,7)===ym){
+        det.appendChild(el('p','cal-note','Click the date again to see the whole month.'));
+        byDay[selKey].forEach(function(e){det.appendChild(block(e))});
+      }else{
+        selKey=null;var list=evs.filter(function(e){return (e.dates||[]).some(function(k){return k.slice(0,7)===ym})});
+        det.appendChild(el('p','cal-note',list.length?'Events in '+MONTHS[m]+' (click a highlighted date for details):':'No events scheduled in '+MONTHS[m]+' '+y+'.'));
+        list.forEach(function(e){det.appendChild(block(e))});
+      }
+    }
+    function render(){var evs=sorted(read());cards(evs);calendar(evs)}
+    document.addEventListener('click',function(ev){
+      if(!ev.target.closest||!ev.target.closest('#club-cal'))return;
+      var nav=ev.target.closest('[data-nav]'),day=ev.target.closest('.cal-day.has');
+      if(nav){view=new Date(view.getFullYear(),view.getMonth()+(+nav.dataset.nav),1);selKey=null;render()}
+      else if(day){selKey=(selKey===day.dataset.k)?null:day.dataset.k;render()}
+    });
+    window.SSEvents={get:function(){return sorted(read())},set:function(a){write(sorted(a));render()},render:render,label:label,
+      show:function(k){var d=parse(k);view=new Date(d.getFullYear(),d.getMonth(),1);selKey=null;render()}};
+    render();
+  })();
+  </script>
+  <script id="editor-js">
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const site=$('#site'),root=document.documentElement,body=document.body,KEY='siteforge:'+location.pathname;
+let sel=null,on=false,hist=[],hi=-1,tm,rows=[],path=[],warned=false;
+const FONTS=[['','Auto'],['Inter,Arial,sans-serif','Inter'],["'Bebas Neue',sans-serif",'Bebas Neue'],['Oswald,sans-serif','Oswald'],["'Playfair Display',serif",'Playfair Display'],["'Space Grotesk',sans-serif",'Space Grotesk'],['Georgia,serif','Georgia'],['monospace','Monospace']];
+const INL=new Set('H1 H2 H3 H4 H5 H6 P LI A SPAN B SMALL BUTTON LABEL I EM STRONG'.split(' '));
+const textual=el=>!el.querySelector('div,section,article,p,ul,img,video,h1,h2,h3,form,header,footer')&&(INL.has(el.tagName)||[...el.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim()))&&el.textContent.trim()!=='';
+const nm=n=>{const c=[...n.classList].find(c=>!c.startsWith('ed-'));return n.tagName.toLowerCase()+(c?'.'+c:'')};
+const toHex=c=>{const m=(c||'').match(/[\d.]+/g);return m?'#'+m.slice(0,3).map(n=>(+n|0).toString(16).padStart(2,'0')).join(''):'#000000'};
+const fld=(p,l,k,o=[])=>`<label class="e-f"><span>${l}</span>${k==='sel'?`<select data-p="${p}" data-k="sel">${o.map(x=>{const[v,t]=Array.isArray(x)?x:[x,x||'Auto'];return`<option value="${v}">${t}</option>`}).join('')}</select>`:k==='col'?`<span class="e-c"><input type="color" data-k="col" data-p="${p}"><button data-x="${p}" title="Clear">×</button></span>`:`<input data-k="${k}" data-p="${p}" ${k==='num'||k==='raw'?'type="number" step="any"':''}>`}</label>`;
+const grp=(g,t,b)=>`<div class="e-g" data-g="${g}" hidden><h5>${t}</h5>${b}</div>`;
+const rng=(id,l,a,b,v,s=1)=>`<label class="e-f"><span>${l}</span><input type="range" id="${id}" min="${a}" max="${b}" step="${s}" value="${v}"></label>`;
+const txt=(id,l,t='')=>`<label class="e-f"><span>${l}</span><input id="${id}" ${t}></label>`;
+const TXT=[fld('fontFamily','Font','sel',FONTS),fld('fontSize','Size (px)','num'),fld('fontWeight','Weight','sel',['','400','500','600','700','800']),fld('color','Colour','col'),fld('textAlign','Align','sel',['','left','center','right']),fld('letterSpacing','Spacing (px)','num'),fld('lineHeight','Line height','raw'),fld('textTransform','Case','sel',['','uppercase','lowercase','capitalize','none'])].join('');
+const BOX=[fld('backgroundColor','Background','col'),fld('padding','Padding (px)','num'),fld('marginBottom','Space below','num'),fld('width','Width','txt'),fld('height','Height (px or auto)','txt'),fld('minHeight','Min height','num'),fld('maxHeight','Max height (px)','num'),fld('borderRadius','Radius (px)','num'),fld('opacity','Opacity','raw')].join('');
+const css=`#ed,#ed *{box-sizing:border-box}#ed{position:fixed;z-index:9999;top:0;right:0;bottom:0;width:310px;display:none;flex-direction:column;background:#fff;color:#14171c;font:12px/1.4 Inter,Arial,sans-serif;box-shadow:-8px 0 30px #0005}body.ed-on #ed{display:flex}body.ed-on{padding-right:310px}
+#ed button{font:700 12px Inter,Arial;border:0;border-radius:6px;padding:7px 10px;background:#eceef1;color:#14171c;cursor:pointer}#ed button.o,#ed-pill{background:#ff6500;color:#fff}#ed button:hover{filter:brightness(.93)}#ed button:disabled{opacity:.35;cursor:default}
+.e-top,.e-top2{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 12px 4px}.e-top span{display:flex;gap:6px}.e-top2 button{flex:1}
+.e-tabs{display:flex;border-bottom:1px solid #e1e4e8;padding:0 8px;margin-top:6px}#ed .e-tabs button{background:none;border-radius:0;padding:9px 10px;color:#656a73}#ed .e-tabs .on{color:#ff6500;box-shadow:inset 0 -2px #ff6500}
+.e-body{flex:1;overflow:auto;padding:4px 12px 40px}#ed h5{margin:16px 0 6px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#656a73}#ed [hidden]{display:none!important}
+.e-f{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:8px;margin:5px 0}.e-f input,.e-f select{width:100%;border:1px solid #d8dbe0;border-radius:6px;padding:6px;font:12px Inter,Arial;background:#fff;color:#14171c;min-width:0}.e-f input[type=color]{padding:1px;height:28px}.e-f input[type=range]{padding:0}.e-f input[type=checkbox]{width:auto;justify-self:start}
+.e-c{display:flex;gap:4px}.e-c button{padding:4px 8px!important}.e-btns{display:flex;flex-wrap:wrap;gap:6px}.e-wide{width:100%;margin-top:10px}.e-none{color:#656a73;line-height:1.5}
+#e-crumb{display:flex;flex-wrap:wrap;gap:3px;margin:10px 0}#e-crumb button{padding:3px 6px!important;font-weight:600}
+.e-r{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:7px 0;border-bottom:1px solid #eceef1}.e-r b{cursor:pointer;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.e-r.off b{opacity:.4}.e-r span{display:flex;gap:3px}.e-r button{padding:3px 7px!important}
+#ed-bar{position:fixed;z-index:9998;display:none;gap:3px;background:#14171c;padding:4px;border-radius:8px;box-shadow:0 6px 18px #0007}#ed-bar button{background:#2a2f37;color:#fff;border:0;border-radius:5px;padding:5px 8px;font:700 11px Inter,Arial;cursor:pointer}#ed-bar button:last-child{background:#c9302c}
+#ed-pill{position:fixed;z-index:9999;right:18px;bottom:18px;border:0;border-radius:99px;padding:12px 18px;font:700 13px Inter,Arial;cursor:pointer;box-shadow:0 8px 24px #0007}body.ed-on #ed-pill{display:none}
+#ed-toast{position:fixed;z-index:9999;left:50%;bottom:24px;transform:translateX(-50%);background:#14171c;color:#fff;padding:9px 16px;border-radius:8px;font:600 12px Inter,Arial;opacity:0;transition:.25s;pointer-events:none}#ed-toast.show{opacity:1}
+body.ed-on #site .ed-hov{outline:1px dashed #ff6500;outline-offset:-1px}body.ed-on #site .ed-sel{outline:2px solid #ff6500!important;outline-offset:-2px}
+#pg-css{width:100%;box-sizing:border-box;min-height:200px;padding:8px;border:1px solid #d5d8de;border-radius:6px;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;resize:vertical;margin-bottom:8px}
+#ed-pv{position:fixed;inset:0;z-index:10001;background:#0b0d10f2;display:none;flex-direction:column;align-items:center}#ed-pv.on{display:flex}
+#ed-pv .pv-bar{display:flex;gap:6px;padding:10px}#ed-pv .pv-bar button{background:#2a2f37;color:#fff;border:0;border-radius:6px;padding:8px 12px;font:700 12px Inter,Arial;cursor:pointer}#ed-pv .pv-bar button.on{background:#ff6500}
+#ed-pv .pv-stage{flex:1;width:100%;display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
+#ed-pv iframe{flex:none;border:10px solid #2a2f37;border-radius:30px;background:#fff;transform-origin:top center}
+#ev-pane textarea{width:100%;box-sizing:border-box;border:1px solid #d8dbe0;border-radius:6px;padding:6px;font:12px Inter,Arial;resize:vertical}
+.ev-row{display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px solid #eceef1;font:12px Inter,Arial}.ev-row span{flex:1;min-width:0}.ev-row small{display:block;color:#656a73;margin-top:2px}.ev-row button{flex:none;padding:5px 8px}
+.ev-d{display:flex;gap:6px;margin:5px 0}.ev-d input{flex:1;border:1px solid #d8dbe0;border-radius:6px;padding:6px;font:12px Inter,Arial;min-width:0}.ev-d button{flex:none;padding:5px 9px}
+@media(max-width:700px){#ed{width:100%;top:auto;height:52vh}body.ed-on{padding-right:0;padding-bottom:52vh}}`;
+const st=document.createElement('style');st.setAttribute('data-ed','');st.textContent=css;document.head.append(st);
+const ui=document.createElement('div');ui.id='ed';ui.setAttribute('data-ed','');
+ui.innerHTML=`<div class="e-top"><b>Site editor</b><span><button id="e-undo" title="Undo (Ctrl+Z)">↶</button><button id="e-redo" title="Redo (Ctrl+Y)">↷</button><button id="e-done" class="o">Done</button></span></div>
+<div class="e-top2"><button id="e-save">Save editable file</button><button id="e-clean">Export clean site</button></div>
+<div class="e-top2"><button id="e-pv-m">📱 Mobile preview</button><button id="e-pv-t">Tablet preview</button></div>
+<div class="e-tabs"><button data-t="el">Element</button><button data-t="sec">Sections</button><button data-t="ev">Events</button><button data-t="pg">Page</button></div>
+<div class="e-body"><div data-pane="el"><p class="e-none">Click anything on the page to select it. Click selected text to type. Use the path below to pick a parent (card, section…).</p><div id="e-crumb"></div>
+${grp('text','Text',TXT)}
+${grp('link','Link',`<label class="e-f"><span>Go to</span><select id="lk-sec"></select></label>${txt('lk-href','URL')}<label class="e-f"><span>New tab</span><input type="checkbox" id="lk-new"></label>`)}
+${grp('img','Image / video',`${txt('im-url','URL')}<label class="e-f"><span>Upload</span><input type="file" accept="image/*" id="im-file"></label>${txt('im-alt','Alt text')}${fld('objectFit','Fit','sel',['','cover','contain'])}${fld('width','Width (px or %)','txt')}${fld('height','Height (px or auto)','txt')}${fld('maxHeight','Max height (px)','num')}${rng('im-z','Zoom % (visual only)',50,250,100)}${rng('im-x','Focus X',0,100,50)}${rng('im-y','Focus Y',0,100,50)}`)}
+${grp('bg','Background image',`${txt('bg-url','URL')}<label class="e-f"><span>Upload</span><input type="file" accept="image/*" id="bg-file"></label><div id="ov-row">${rng('ov','Overlay',0,1,.94,.02)}</div><button id="bg-clear" class="e-wide">Remove background image</button>`)}
+${grp('box','Box & spacing',BOX)}
+${grp('grid','Grid / flex layout',`<label class="e-f"><span>Columns</span><select id="e-cols"><option value="">—</option>${[1,2,3,4,5,6].map(n=>`<option>${n}</option>`).join('')}</select></label>${fld('gap','Gap (px)','num')}`)}
+${grp('sec','Section',`${txt('sec-id','Anchor ID')}<label class="e-f"><span>Hide on site</span><input type="checkbox" id="sec-hide"></label>`)}
+${grp('add','Add inside selected',`<div class="e-btns"><button data-add="h">Heading</button><button data-add="p">Text</button><button data-add="b">Button</button><button data-add="i">Image</button><button data-add="v">Video</button><button data-add="t">Label</button><button data-add="c">Copy last child</button></div>`)}
+<button id="e-reset" class="e-wide" hidden>Reset this element's style</button></div>
+<div data-pane="sec" hidden><div id="e-list"></div><h5>Add section</h5><label class="e-f"><span>Type</span><select id="add-kind"><option value="text">Heading + text</option><option value="cards">Three cards</option><option value="cta">Call to action</option></select></label><label class="e-f"><span>Add to menu</span><input type="checkbox" id="add-menu" checked></label><button id="add-sec" class="e-wide o">Add section</button></div>
+<div data-pane="ev" id="ev-pane" hidden></div><div data-pane="pg" hidden><h5>Brand colours</h5>${[['--orange','Accent'],['--ink','Page dark'],['--char','Section dark'],['--paper','Section light']].map(([v,l])=>`<label class="e-f"><span>${l}</span><input type="color" data-v="${v}"></label>`).join('')}<h5>Page</h5>${txt('pg-title','Page title')}<h5>Custom CSS (whole site)</h5><textarea id="pg-css" spellcheck="false" placeholder=".logo{height:44px}"></textarea><button id="e-discard" class="e-wide">Discard draft &amp; reload</button></div></div>`;
+const barEl=document.createElement('div');barEl.id='ed-bar';barEl.setAttribute('data-ed','');barEl.innerHTML='<button data-b="parent">Parent</button><button data-b="earlier">Earlier</button><button data-b="later">Later</button><button data-b="dup">Duplicate</button><button data-b="del">Delete</button>';
+const pill=document.createElement('button');pill.id='ed-pill';pill.setAttribute('data-ed','');pill.textContent='✎ Edit site';
+const toastEl=document.createElement('div');toastEl.id='ed-toast';toastEl.setAttribute('data-ed','');
+body.append(ui,barEl,pill,toastEl);
+const toast=m=>{toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(toastEl._t);toastEl._t=setTimeout(()=>toastEl.classList.remove('show'),2400)};
+
+/* ---------- history & draft ---------- */
+const clean=c=>{$$('.ed-sel,.ed-hov',c).forEach(n=>n.classList.remove('ed-sel','ed-hov'));$$('[contenteditable]',c).forEach(n=>n.removeAttribute('contenteditable'));$$('.links.open',c).forEach(n=>n.classList.remove('open'));$$('[class=""]',c).forEach(n=>n.removeAttribute('class'))};
+const snapNow=()=>{const c=site.cloneNode(true);clean(c);return{h:c.innerHTML,r:root.getAttribute('style')||'',t:document.title}};
+function snap(){const s=snapNow(),l=hist[hi];if(l&&l.h===s.h&&l.r===s.r&&l.t===s.t)return;hist=hist.slice(0,hi+1);hist.push(s);if(hist.length>80)hist.shift();hi=hist.length-1;try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){if(!warned){warned=true;toast('Too big to autosave — use "Save editable file"')}}btns();secs()}
+const commit=()=>{clearTimeout(tm);tm=setTimeout(snap,300)};
+const apply=s=>{site.innerHTML=s.h;s.r?root.setAttribute('style',s.r):root.removeAttribute('style');if(s.t)document.title=s.t;prep();if(window.SSEvents){SSEvents.render();if(!$('#ev-pane').hidden)evPane()}};
+function go(d){clearTimeout(tm);snap();const n=hi+d;if(n<0||n>=hist.length)return;select(null);hi=n;apply(hist[hi]);try{localStorage.setItem(KEY,JSON.stringify(hist[hi]))}catch(e){}fill();btns();secs()}
+const btns=()=>{$('#e-undo').disabled=hi<1;$('#e-redo').disabled=hi>=hist.length-1};
+function prep(){$$('.gallery>img,.gallery>video').forEach(m=>{const f=document.createElement('div');f.className='media-frame';m.replaceWith(f);f.append(m)})}
+
+/* ---------- selection ---------- */
+function select(el){
+  if(sel===el)return;
+  if(sel){sel.classList.remove('ed-sel');sel.removeAttribute('contenteditable')}
+  sel=el;
+  if(el){el.classList.add('ed-sel');if(textual(el)){el.contentEditable='true';el.focus({preventScroll:true})}}
+  fill();place();
+}
+function place(){
+  if(!sel||!on||!sel.isConnected){barEl.style.display='none';return}
+  const r=sel.getBoundingClientRect();barEl.style.display='flex';
+  barEl.style.top=Math.max(6,r.top-34)+'px';barEl.style.left=Math.max(6,Math.min(r.left,innerWidth-330-310))+'px';
+}
+setInterval(place,200);addEventListener('scroll',place,true);addEventListener('resize',place);
+function setOn(v){on=v;body.classList.toggle('ed-on',v);if(!v)select(null);else setTab('el');place()}
+function setTab(t){$$('[data-pane]',ui).forEach(p=>p.hidden=p.dataset.pane!==t);$$('.e-tabs button',ui).forEach(b=>b.classList.toggle('on',b.dataset.t===t));if(t==='sec')secs();if(t==='pg')pageFill();if(t==='ev')evPane()}
+
+/* ---------- element actions ---------- */
+const move=(el,d)=>{if(d<0){const p=el.previousElementSibling;p&&el.parentNode.insertBefore(el,p)}else{const n=el.nextElementSibling;n&&el.parentNode.insertBefore(n,el)}commit()};
+const dup=el=>{const c=el.cloneNode(true);clean(c);if(c.id)c.id+='-copy';el.after(c);commit();return c};
+const del=el=>{if(sel&&(el===sel||el.contains(sel)))select(null);el.remove();commit()};
+barEl.onclick=e=>{const b=e.target.closest('[data-b]');if(!b||!sel)return;const a=b.dataset.b;
+  if(a==='parent'){const p=sel.parentElement;if(p&&p!==site)select(p)}
+  else if(a==='earlier')move(sel,-1);else if(a==='later')move(sel,1);
+  else if(a==='dup')select(dup(sel));else if(a==='del')del(sel)};
+const T={h:'<h3>New heading</h3>',p:'<p>New paragraph — click to edit.</p>',b:'<a class="button" href="#contact">Button</a>',i:'<img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=800&q=80" alt="">',v:'<video controls muted loop></video>',t:'<span class="tag">New label</span>'};
+function add(k){
+  let n;
+  if(k==='c'){const l=sel.lastElementChild;if(!l)return toast('Nothing inside to copy');n=l.cloneNode(true);clean(n)}
+  else{const t=document.createElement('div');t.innerHTML=sel.tagName==='UL'?'<li>New item</li>':T[k];n=t.firstElementChild;
+    if(sel.matches('.gallery')&&/^(IMG|VIDEO)$/.test(n.tagName)){const f=document.createElement('div');f.className='media-frame';f.append(n);n=f}}
+  sel.append(n);select(n.matches('.media-frame')?n.firstElementChild:n);commit();
+}
+
+/* ---------- canvas interaction ---------- */
+site.addEventListener('click',e=>{
+  if(!on)return;const t=e.target;
+  if(t===sel&&textual(t))return;
+  e.preventDefault();e.stopPropagation();select(t);setTab('el');
+},true);
+site.addEventListener('submit',e=>{if(on)e.preventDefault()},true);
+site.addEventListener('mouseover',e=>{$$('.ed-hov').forEach(n=>n.classList.remove('ed-hov'));if(on&&e.target!==site)e.target.classList.add('ed-hov')});
+site.addEventListener('mouseleave',()=>$$('.ed-hov').forEach(n=>n.classList.remove('ed-hov')));
+site.addEventListener('input',commit);
+site.addEventListener('keydown',e=>{if(e.key==='Enter'&&sel&&sel.isContentEditable){e.preventDefault();document.execCommand('insertLineBreak')}});
+site.addEventListener('paste',e=>{if(sel&&sel.isContentEditable){e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))}});
+addEventListener('keydown',e=>{if(!on||e.target.closest&&e.target.closest('#ed'))return;const m=e.ctrlKey||e.metaKey,k=e.key.toLowerCase();
+  if(m&&k==='z'){e.preventDefault();go(e.shiftKey?1:-1)}else if(m&&k==='y'){e.preventDefault();go(1)}else if(e.key==='Escape')select(null)},true);
+
+/* ---------- inspector ---------- */
+function crumb(){path=[];for(let n=sel;n&&n!==site;n=n.parentElement)path.unshift(n);$('#e-crumb').innerHTML=path.map((n,i)=>`<button data-ci="${i}">${nm(n)}</button>`).join('')}
+function fill(){
+  const P=$('[data-pane=el]',ui);crumb();
+  $('.e-none',P).hidden=!!sel;$('#e-reset').hidden=!sel;$$('.e-g',P).forEach(g=>g.hidden=true);
+  if(!sel)return;
+  const el=sel,cs=getComputedStyle(el),tx=textual(el),img=/^(IMG|VIDEO)$/.test(el.tagName),top=el.matches('#site>header,#site>footer,#site main>*'),a=el.closest('a');
+  const show=(g,v)=>$(`[data-g=${g}]`,P).hidden=!v;
+  show('text',tx);show('box',true);show('grid',el.dataset.cols!==undefined||/grid|flex/.test(cs.display));show('link',!!a);show('img',img);show('bg',!tx&&!img);show('sec',top);show('add',(!tx&&!img)||el.tagName==='UL');['width','height','maxHeight'].forEach(q=>{const bw=$('[data-g=box] [data-p='+q+']',P);if(bw)bw.closest('label').hidden=img});
+  $$('[data-p]',P).forEach(i=>{const p=i.dataset.p,k=i.dataset.k,v=el.style[p];
+    i.value=k==='col'?toHex(v||cs[p]):k==='sel'||k==='txt'?v:k==='num'?(v!==''?parseFloat(v):parseFloat(cs[p])||''):(v||(p==='opacity'?cs.opacity:''))});
+  $('#e-cols').value=el.dataset.cols||'';
+  if(a){const s=$('#lk-sec');s.innerHTML='<option value="">Custom URL…</option>'+$$('#site main>[id]').map(x=>`<option value="#${x.id}">Section: ${label(x)}</option>`).join('');const h=a.getAttribute('href')||'';s.value=[...s.options].some(o=>o.value===h)?h:'';$('#lk-href').value=h;$('#lk-new').checked=a.target==='_blank'}
+  if(img){$('#im-url').value=el.src.startsWith('data:')?'(uploaded image)':el.getAttribute('src')||'';$('#im-alt').value=el.alt||'';const pos=(el.style.objectPosition.match(/\d+/g)||[50,50]);$('#im-x').value=pos[0];$('#im-y').value=pos[1];$('#im-z').value=Math.round(((el.style.transform.match(/[\d.]+/)||[1])[0])*100)}
+  if(!tx&&!img){const v=el.style.getPropertyValue('--bg-img')||el.style.backgroundImage;$('#bg-url').value=/^url\("data:/.test(v)?'(uploaded image)':(v.match(/url\("?([^")]+)/)||[])[1]||'';$('#ov-row').hidden=!el.hasAttribute('data-ov');$('#ov').value=el.style.getPropertyValue('--ov')||.94}
+  if(top){$('#sec-id').value=el.id;$('#sec-hide').checked=el.classList.contains('ed-off')}
+}
+const setBg=u=>{const v=u?`url("${u}")`:'none';if(sel.hasAttribute('data-bgvar'))sel.style.setProperty('--bg-img',v);else{sel.style.backgroundImage=u?v:'';if(u){sel.style.backgroundSize='cover';sel.style.backgroundPosition='center'}}};
+const frame=()=>{const z=$('#im-z').value/100,x=$('#im-x').value,y=$('#im-y').value;sel.style.objectPosition=x+'% '+y+'%';sel.style.transformOrigin=x+'% '+y+'%';sel.style.transform=z===1?'':`scale(${z})`};
+const A=()=>sel.closest('a');
+const userCss=()=>{let c=$('#user-css',site);if(!c){c=document.createElement('style');c.id='user-css';site.prepend(c)}return c};
+const H={'e-cols':v=>v?sel.dataset.cols=v:sel.removeAttribute('data-cols'),'lk-sec':v=>{if(v){A().setAttribute('href',v);$('#lk-href').value=v}},'lk-href':v=>A().setAttribute('href',v),'lk-new':v=>{if(v){A().target='_blank';A().rel='noopener'}else A().removeAttribute('target')},
+  'im-url':v=>sel.setAttribute('src',v),'im-alt':v=>sel.alt=v,'im-z':frame,'im-x':frame,'im-y':frame,'bg-url':v=>setBg(v),'ov':v=>sel.style.setProperty('--ov',v),
+  'sec-id':v=>sel.id=v.trim().replace(/\s+/g,'-'),'sec-hide':v=>sel.classList.toggle('ed-off',v)};
+const readImg=f=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.85))};im.src=fr.result};fr.readAsDataURL(f)});
+function onIn(e){
+  const i=e.target,id=i.id;if(i.closest&&i.closest('#ev-pane'))return;
+  if(i.dataset.v){root.style.setProperty(i.dataset.v,i.value);return commit()}
+  if(id==='pg-title'){document.title=i.value;return commit()}
+  if(id==='pg-css'){userCss().textContent=i.value.replace(/<\/style/gi,'');return commit()}
+  if(!sel||/^(add-kind|add-menu)$/.test(id))return;
+  if(i.type==='file'){if(e.type==='change'&&i.files[0])readImg(i.files[0]).then(u=>{if(id==='im-file'){sel.src=u;$('#im-url').value='(uploaded image)'}else{setBg(u);$('#bg-url').value='(uploaded image)'}commit()});return}
+  const p=i.dataset.p;
+  if(p){let v=i.value;if(v!==''&&(i.dataset.k==='num'||(i.dataset.k==='txt'&&/^[\d.]+$/.test(v))))v+='px';sel.style[p]=v}
+  else if(H[id])H[id](i.type==='checkbox'?i.checked:i.value);
+  commit();
+}
+ui.addEventListener('input',onIn);ui.addEventListener('change',onIn);
+
+/* ---------- sections ---------- */
+const label=s=>s.tagName==='HEADER'?'Header & menu':s.tagName==='FOOTER'?'Footer':((s.querySelector('h1,h2,h3')||{}).textContent||s.id||nm(s)).trim().slice(0,26);
+function secs(){
+  rows=[$('#site>header'),...$$('#site main>*'),$('#site>footer')].filter(Boolean);
+  $('#e-list').innerHTML=rows.map((s,i)=>{const m=s.parentElement.tagName==='MAIN';return`<div class="e-r${s.classList.contains('ed-off')?' off':''}"><b data-a="go" data-i="${i}">${label(s)}</b><span>${m?`<button data-a="up" data-i="${i}">↑</button><button data-a="dn" data-i="${i}">↓</button><button data-a="dup" data-i="${i}">⧉</button><button data-a="hide" data-i="${i}">◐</button><button data-a="del" data-i="${i}">×</button>`:''}</span></div>`}).join('');
+}
+const TPL={
+  text:id=>`<section class="dark" id="${id}"><div class="heading"><div class="eyebrow">NEW SECTION</div><h2 class="title">NEW SECTION</h2><p>Write something about this section.</p></div></section>`,
+  cards:id=>`<section class="light" id="${id}"><div class="heading"><div class="eyebrow">HIGHLIGHTS</div><h2 class="title">NEW SECTION</h2><p>A short introduction to these cards.</p></div><div class="grid news" data-cols="3">${'<article class="card"><h3>Card title</h3><p>Short description for this card.</p></article>'.repeat(3)}</div></section>`,
+  cta:id=>`<section class="dark" id="${id}"><div class="heading"><h2 class="title">READY TO PLAY?</h2><p>Come along to a session and give it a go.</p><div class="actions"><a class="button" href="#contact">Get in touch</a></div></div></section>`};
+function addSection(){
+  const main=$('#site main');let id='section-1';for(let n=1;$('#'+id);)id='section-'+(++n);
+  const t=document.createElement('div');t.innerHTML=TPL[$('#add-kind').value](id);const s=t.firstElementChild,cur=sel&&sel.closest('#site main>*');
+  cur?cur.after(s):main.append(s);
+  if($('#add-menu').checked){const l=$('#site .links');if(l){const a=document.createElement('a');a.href='#'+id;a.textContent='New section';l.append(a)}}
+  commit();select(s);s.scrollIntoView({behavior:'smooth'});toast('Section added — edit its text, then rename the menu link');
+}
+$('#e-list').onclick=e=>{const b=e.target.closest('[data-a]');if(!b)return;const s=rows[+b.dataset.i],a=b.dataset.a;
+  if(a==='go'){select(s);s.scrollIntoView({behavior:'smooth'});return}
+  if(a==='up')move(s,-1);else if(a==='dn')move(s,1);else if(a==='dup')dup(s);else if(a==='hide'){s.classList.toggle('ed-off');commit()}else if(a==='del')del(s);secs()};
+
+/* ---------- page tab & saving ---------- */
+function pageFill(){$$('[data-v]',ui).forEach(i=>i.value=toHex(getComputedStyle(root).getPropertyValue(i.dataset.v).trim()).replace(/^#000000$/,getComputedStyle(root).getPropertyValue(i.dataset.v).trim()||'#000000'));$('#pg-title').value=document.title;$('#pg-css').value=(($('#user-css',site)||{}).textContent||'').trim()}
+function serial(cleanExport){
+  select(null);const c=root.cloneNode(true);$$('[data-ed]',c).forEach(n=>n.remove());clean(c);c.querySelector('body').classList.remove('ed-on');
+  if(!c.querySelector('body').className)c.querySelector('body').removeAttribute('class');if(cleanExport)c.querySelector('#editor-js').remove();
+  return'<!doctype html>\n'+c.outerHTML}
+const fname=(location.pathname.split('/').pop()||'site.html').replace(/\.html?$/i,'')||'site';
+const dl=(h,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)};
+ui.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.t)return setTab(t.dataset.t);
+  if(t.dataset.ci)return select(path[+t.dataset.ci]);
+  if(t.dataset.add&&sel)return add(t.dataset.add);
+  if(t.dataset.x&&sel){sel.style[t.dataset.x]='';fill();return commit()}
+  const id=t.id;
+  if(id==='e-undo')go(-1);else if(id==='e-redo')go(1);else if(id==='e-done')setOn(false);
+  else if(id==='e-save'){clearTimeout(tm);snap();dl(serial(false),fname+'.html');try{localStorage.removeItem(KEY)}catch(x){}toast('Saved — open this file to keep editing')}
+  else if(id==='e-clean'){dl(serial(true),fname+'-site.html');toast('Exported without the editor')}
+  else if(id==='e-reset'&&sel){[...sel.style].filter(p=>!p.startsWith('--')).forEach(p=>sel.style.removeProperty(p));fill();commit()}
+  else if(id==='bg-clear'&&sel){setBg('');$('#bg-url').value='';commit()}
+  else if(id==='add-sec')addSection();else if(id==='e-pv-m')pvShow('m');else if(id==='e-pv-t')pvShow('t');
+  else if(id==='e-discard'){if(confirm('Discard your unsaved draft and reload the saved file?')){try{localStorage.removeItem(KEY)}catch(x){}location.reload()}}
+});
+pill.onclick=()=>setOn(true);
+
+/* ---------- events manager ---------- */
+let evEdit=-1;
+const evEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const evDate=v=>'<div class="ev-d"><input type="date" value="'+evEsc(v||'')+'"><button type="button" data-ev="rmdate" title="Remove date">✕</button></div>';
+function evPane(d){
+  const P=$('#ev-pane');if(!P||!window.SSEvents)return;
+  const list=SSEvents.get();d=d||{tag:'',title:'',details:'',dates:['']};
+  P.innerHTML='<h5>Events (shown as cards and on the calendar)</h5>'
+   +(list.length?list.map((e,i)=>'<div class="ev-row"><span><b>'+evEsc(e.title)+'</b><small>'+evEsc((e.tag?e.tag+' · ':'')+SSEvents.label(e.dates))+'</small></span><button type="button" data-ev="edit" data-i="'+i+'">Edit</button><button type="button" data-ev="del" data-i="'+i+'" title="Delete">✕</button></div>').join(''):'<p class="e-none">No events yet.</p>')
+   +'<h5>'+(evEdit>=0?'Edit event':'Add event')+'</h5>'
+   +'<label class="e-f"><span>Label</span><input id="ev-tag" placeholder="e.g. Tournament" value="'+evEsc(d.tag)+'"></label>'
+   +'<label class="e-f"><span>Event name</span><input id="ev-title" value="'+evEsc(d.title)+'"></label>'
+   +'<label class="e-f"><span>Details</span><textarea id="ev-details" rows="3">'+evEsc(d.details)+'</textarea></label>'
+   +'<h5>Date(s)</h5><div id="ev-dates">'+(d.dates.length?d.dates:['']).map(evDate).join('')+'</div>'
+   +'<button type="button" data-ev="adddate" class="e-wide">+ Add another date</button>'
+   +'<div class="e-top2"><button type="button" data-ev="save">'+(evEdit>=0?'Save changes':'Add event')+'</button>'+(evEdit>=0?'<button type="button" data-ev="cancel">Cancel</button>':'')+'</div>';
+}
+ui.addEventListener('click',e=>{
+  const b=e.target.closest('[data-ev]');if(!b||!window.SSEvents)return;
+  const a=b.dataset.ev,list=SSEvents.get();
+  if(a==='adddate')$('#ev-dates').insertAdjacentHTML('beforeend',evDate(''));
+  else if(a==='rmdate'){if($$('#ev-dates .ev-d').length>1)b.parentNode.remove();else b.parentNode.querySelector('input').value=''}
+  else if(a==='edit'){evEdit=+b.dataset.i;const x=list[evEdit];evPane({tag:x.tag||'',title:x.title,details:x.details||'',dates:x.dates.slice()})}
+  else if(a==='cancel'){evEdit=-1;evPane()}
+  else if(a==='del'){list.splice(+b.dataset.i,1);evEdit=-1;SSEvents.set(list);evPane();commit();toast('Event deleted')}
+  else if(a==='save'){
+    const v={tag:$('#ev-tag').value.trim(),title:$('#ev-title').value.trim(),details:$('#ev-details').value.trim(),dates:[...new Set($$('#ev-dates input').map(x=>x.value).filter(Boolean))].sort()};
+    if(!v.title||!v.dates.length){toast('Add an event name and at least one date');return}
+    if(evEdit>=0)list[evEdit]=v;else list.push(v);
+    evEdit=-1;SSEvents.set(list);SSEvents.show(v.dates[0]);evPane();commit();toast('Event saved');
+  }
+});
+
+/* ---------- device preview ---------- */
+const DEV={m:[390,844],t:[820,1180]};let pvDev='m';
+const pv=document.createElement('div');pv.id='ed-pv';pv.setAttribute('data-ed','');
+pv.innerHTML='<div class="pv-bar"><button data-d="m">📱 Mobile</button><button data-d="t">Tablet</button><button data-d="r">↻ Refresh</button><button data-d="x">✕ Close</button></div><div class="pv-stage"><iframe title="Preview"></iframe></div>';
+body.append(pv);
+function pvShow(d){
+  if(d)pvDev=d;const[w,h]=DEV[pvDev],f=$('iframe',pv);
+  const dir=location.href.split('#')[0].replace(/[^/]*$/,'');
+  const sc='<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href")||"";if(h.charAt(0)!=="#")return;e.preventDefault();try{var t=h.length>1&&document.querySelector(h);if(t)t.scrollIntoView({behavior:"smooth"})}catch(x){}},true)<\/script>';
+  f.srcdoc=serial(true).replace(/<head[^>]*>/i,m=>m+'<base href="'+dir+'">').replace('</body>',()=>sc+'</body>');
+  f.style.width=w+'px';f.style.height=h+'px';
+  f.style.transform='scale('+Math.min(1,(innerHeight-90)/(h+20),(innerWidth-40)/(w+20))+')';
+  pv.classList.add('on');$$('.pv-bar [data-d]',pv).forEach(b=>b.classList.toggle('on',b.dataset.d===pvDev));
+}
+pv.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(!b)return;const d=b.dataset.d;if(d==='x')pv.classList.remove('on');else if(d==='r')pvShow();else pvShow(d)});
+addEventListener('keydown',e=>{if(e.key==='Escape')pv.classList.remove('on')});
+
+/* ---------- init ---------- */
+try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.h){apply(d);toast('Unsaved draft restored — see the Page tab to discard it')}}catch(e){}
+prep();snap();setTab('el');fill();
+})();
+</script>
+
+
+</body></html>
