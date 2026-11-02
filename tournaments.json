@@ -13,16 +13,20 @@
     "title": "Women & Girls Have-A-Go",
     "start": "2027-03-06",
     "end": "2027-03-08",
-    "location": "Nationwide",
-    "details": "Events: All ages.",
-    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+    "location": "Nationwide - local table tennis associations",
+    "details": "TTNZ nationwide campaign around International Women's Day. Free have-a-go sessions for women and girls of all ages and abilities. Check TTNZ for your nearest session.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar/women-and-girls-have-go",
+    "audience": "All ages",
+    "manual": true
   },
   {
     "title": "Have-A-Go for Brain Health",
     "start": "2027-04-23",
     "end": "2027-04-25",
-    "location": "Nationwide",
-    "details": "Events: All ages.",
-    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+    "location": "Nationwide - local table tennis associations",
+    "details": "Free, relaxed sessions celebrating World Table Tennis Day: no skills or equipment needed, great for kids, parents and grandparents. Table tennis is a whole-brain workout (reaction, memory, coordination). In 2026 Manawatu and Whanganui hosted sessions; register through TTNZ.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar/have-a-go-day-brain-health",
+    "audience": "Seniors and retired",
+    "manual": true
   }
 ]
