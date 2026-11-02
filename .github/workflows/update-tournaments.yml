@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests beautifulsoup4
-      - run: python scripts/update_tournaments.py
+      - run: python update_tournaments.py
       - name: Commit changes
         run: |
           git config user.name "github-actions"
