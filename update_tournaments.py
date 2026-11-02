@@ -84,9 +84,8 @@ def main():
         old = json.load(open(OUT, encoding="utf-8"))
     except Exception:
         old = []
-    keep = [o for o in old if o.get("manual")]
-    seen = {(o["title"], o["start"]) for o in out}
-    out += [o for o in keep if (o["title"], o["start"]) not in seen]
+    manual = {(o["title"], o["start"]): o for o in old if o.get("manual")}
+    out = [o for o in out if (o["title"], o["start"]) not in manual] + list(manual.values())   
     out.sort(key=lambda x: x["start"])
     json.dump(out, open(OUT, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
     open(OUT, "a").write("\n")
