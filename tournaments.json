@@ -10,6 +10,22 @@
     "manual": true
   },
   {
+    "title": "Women & Girls Have-A-Go in conjunction with International Women's Day",
+    "start": "2027-03-06",
+    "end": "2027-03-08",
+    "location": "Nationwide",
+    "details": "Events: All ages.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "Wellington Veteran Open",
+    "start": "2027-03-06",
+    "end": "2027-03-06",
+    "location": "Wellington",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
     "title": "Women & Girls Have-A-Go",
     "start": "2027-03-06",
     "end": "2027-03-08",
@@ -20,11 +36,59 @@
     "manual": true
   },
   {
+    "title": "Qualifier 3 + Manawatu Autumn Open",
+    "start": "2027-03-13",
+    "end": "2027-03-14",
+    "location": "Palmerston North",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "North Island Individual and Para Championships",
+    "start": "2027-04-10",
+    "end": "2027-04-12",
+    "location": "Palmerston North",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
     "title": "Have-A-Go for Brain Health",
     "start": "2027-04-23",
     "end": "2027-04-25",
     "location": "Nationwide",
     "details": "Events: All ages.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "Wellington Autumn Open",
+    "start": "2027-05-01",
+    "end": "2027-05-02",
+    "location": "Wellington",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "Hawke's Bay Open",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "location": "Napier",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "Whanganui Open",
+    "start": "2027-07-03",
+    "end": "2027-07-04",
+    "location": "Whanganui",
+    "details": "See the TTNZ site for details and entry.",
+    "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
+  },
+  {
+    "title": "Manawatu Open",
+    "start": "2027-09-18",
+    "end": "2027-09-19",
+    "location": "Palmerston North",
+    "details": "See the TTNZ site for details and entry.",
     "url": "https://tabletennis.org.nz/tournaments/national-tournament-calendar"
   }
 ]
